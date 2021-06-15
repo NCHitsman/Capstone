@@ -32,7 +32,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   }, {});
   Item.associate = function (models) {
-    Item.belongs(models.World, { foreignKey: 'world_id' })
+    Item.belongsTo(models.World, { foreignKey: 'world_id' })
     Item.hasMany(models.Export, { foreignKey: 'item_id'})
     Item.hasMany(models.Import, { foreignKey: 'item_id'})
     Item.belongsToMany(models.Civilian, { through: 'Inventory', otherKey: 'item_id', foreignKey: 'civ_id'})

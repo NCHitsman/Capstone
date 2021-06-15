@@ -60,7 +60,10 @@ export const logout = () => async (dispatch: any) => {
   return response;
 };
 
-const initialState = { user: null };
+interface initState {
+  user: {id: number} | null
+}
+const initialState: initState = { user: null };
 
 const sessionReducer = (state = initialState, action: any) => {
   let newState;

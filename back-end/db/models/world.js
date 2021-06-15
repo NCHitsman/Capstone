@@ -44,10 +44,10 @@ module.exports = (sequelize, DataTypes) => {
     }
   }, {});
   World.associate = function (models) {
-    World.belongsTo(model.User, { foreignKey: 'owner_id' })
-    World.hasMany(model.Settlement, { foreignKey: 'world_id' })
+    World.belongsTo(models.User, { foreignKey: 'owner_id' })
+    World.hasMany(models.Settlement, { foreignKey: 'world_id' })
     World.hasMany(models.Civilian, { foreignKey: 'world_id' })
-    World.hasMany(models.Items, { foreignKey: 'world_id' })
+    World.hasMany(models.Item, { foreignKey: 'world_id' })
   };
   return World;
 };

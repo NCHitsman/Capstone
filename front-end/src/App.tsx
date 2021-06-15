@@ -4,15 +4,24 @@ import { Route, Switch } from "react-router-dom";
 import * as sessionActions from "./store/session";
 import SignupFormPage from "./components/SignupFormPage";
 import Home from './components/Home'
-import { useAppDispatch } from './store/index'
+import { useAppDispatch, RootState } from './store/index'
+import { getUserWorlds } from './store/worlds'
+import { useSelector } from 'react-redux'
 
 function App() {
   const dispatch = useAppDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
+  const currentUserId = useSelector((state: RootState)  => state.session?.user?.id)
 
   useEffect(() => {
     dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
   }, [dispatch]);
+
+  useEffect(() => {
+    dispatch(getUserWorlds(currentUserId))
+  }, [dispatch, currentUserId])
+
+  const userWorlds = useSelector((state: RootState )=> state.worlds.userWorlds)
 
   return (
     <>
@@ -23,7 +32,7 @@ function App() {
             <SignupFormPage />
           </Route>
           <Route exact path='/'>
-            <Home/>
+            <Home userWorlds={userWorlds} />
           </Route>
         </Switch>
       )}
