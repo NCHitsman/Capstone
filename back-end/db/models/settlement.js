@@ -18,6 +18,10 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       references: { model: 'Worlds' }
     },
+    location: {
+      type: DataTypes.JSON,
+      allowNull: false,
+    },
     type: {
       type: DataTypes.INTEGER,
       allowNull: false
