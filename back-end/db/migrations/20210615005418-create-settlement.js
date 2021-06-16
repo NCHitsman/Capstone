@@ -17,8 +17,12 @@ module.exports = {
         allowNull: false,
         references: { model: 'Worlds' }
       },
-      location: {
-        type: Sequelize.JSON,
+      x_cordinate: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+      },
+      y_cordinate: {
+        type: Sequelize.INTEGER,
         allowNull: false,
       },
       type: {
