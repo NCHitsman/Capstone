@@ -7,6 +7,7 @@ import Home from './components/Home'
 import { useAppDispatch, RootState } from './store/index'
 import { getUserWorlds } from './store/worlds'
 import { useSelector } from 'react-redux'
+import WorldPage from './components/WorldPage'
 
 function App() {
   const dispatch = useAppDispatch();
@@ -30,6 +31,9 @@ function App() {
         <Switch>
           <Route exact path="/signup">
             <SignupFormPage />
+          </Route>
+          <Route exact path='/world/:worldId'>
+            <WorldPage />
           </Route>
           <Route exact path='/'>
             <Home userWorlds={userWorlds} />

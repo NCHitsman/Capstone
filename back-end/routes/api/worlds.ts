@@ -16,5 +16,11 @@ router.get('/userWorlds/:userId', asyncHandler(async (req: Request, res: Respons
     res.json(worlds)
 }))
 
+router.get('/getWorld/:worldId', asyncHandler(async (req: Request, res: Response) => {
+    const { worldId } = req.params
+    const world = await World.findByPk(worldId)
+    res.json(world)
+}))
+
 
 module.exports = router
