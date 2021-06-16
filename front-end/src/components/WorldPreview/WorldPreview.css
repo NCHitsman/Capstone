@@ -1,0 +1,8 @@
+.worldPreview__cont__button {
+    background-color: lightcoral;
+    cursor: pointer;
+    min-height: 50px;
+    min-width: 80%;
+    border-radius: 5px;
+    margin-bottom: 15px;
+}

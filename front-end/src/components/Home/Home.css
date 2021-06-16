@@ -1,0 +1,16 @@
+.worldPreview__container{
+    background-color: lightcyan;
+    min-height: calc(100vh - 50px - 45px);
+    margin-top: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 20%;
+    border-radius: 10px;
+    border: 1px solid black
+}
+
+.myWorlds__text{
+    font-size: 36px;
+    margin: 15px;
+}
