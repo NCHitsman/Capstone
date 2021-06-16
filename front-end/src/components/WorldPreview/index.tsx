@@ -10,7 +10,7 @@ const WorldPreview = ({ world }: { world: worlds }) => {
         <>
             <button
             className='worldPreview__cont__button'
-            onClick={(e) => history.push(`/world/${world.id}`)}
+            onClick={e => history.push(`/world/${world.id}`)}
             >
                 <div>{world.name}</div>
             </button>

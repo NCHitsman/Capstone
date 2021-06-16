@@ -25,9 +25,21 @@ module.exports = {
         type: Sequelize.INTEGER,
         allowNull: true
       },
-      hour_tick: {
+      hour: {
         type: Sequelize.INTEGER,
         allowNull: true
+      },
+      day: {
+        type: Sequelize.INTEGER,
+        allowNull: true
+      },
+      year: {
+        type: Sequelize.INTEGER,
+        allowNull: true
+      },
+      current_tick: {
+        type: Sequelize.INTEGER,
+        allowNull: false
       },
       created_tick: {
         type: Sequelize.INTEGER,

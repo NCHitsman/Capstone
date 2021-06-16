@@ -8,8 +8,11 @@ module.exports = {
           owner_id: 1,
           world_size: 50,
           map_seed: null,
-          hour_tick: null,
-          created_tick: 365000, // 1000 years in days
+          hour: 0,
+          day: 1,
+          year: 1000,
+          current_tick: 8760000,
+          created_tick: 8760000, // 1000 years in days
           createdAt: new Date(),
           updatedAt: new Date()
       },
@@ -18,8 +21,11 @@ module.exports = {
         owner_id: 1,
         world_size: 50,
         map_seed: null,
-        hour_tick: null,
-        created_tick: 500000, // 1000 years in days
+        hour: 0,
+        day: 1,
+        year: 5000000,
+        current_tick: 5000000,
+        created_tick: 5000000,
         createdAt: new Date(),
         updatedAt: new Date()
     }

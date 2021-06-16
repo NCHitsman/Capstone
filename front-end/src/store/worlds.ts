@@ -36,6 +36,23 @@ export const getCurrentWorld = (worldId: string): ThunkAction<void, RootState, u
     return response
 }
 
+export const createNewWorld = (name: string, world_size: number, current_year: number, owner_id: number | undefined)
+: ThunkAction<void, RootState, unknown, AnyAction> => async dispatch => {
+    if (owner_id) {
+        const response = await csrfFetch('/api/worlds/createNewWorld', {
+            method: 'POST',
+            body: JSON.stringify({
+                name,
+                world_size,
+                current_year,
+                owner_id,
+            })
+        })
+        const worldId = await response.json()
+        return worldId
+    }
+}
+
 
 const worldReducer = (state: {
     userWorlds: worlds[],

@@ -1,3 +1,7 @@
+/* .home__contents__container{
+
+} */
+
 .worldPreview__container{
     background-color: lightcyan;
     min-height: calc(100vh - 50px - 45px);
@@ -13,4 +17,11 @@
 .myWorlds__text{
     font-size: 36px;
     margin: 15px;
+}
+
+.createNewWorld__button{
+    max-height: 25px;
+    margin-top: 5px;
+    border: 1px solid black;
+    border-radius: 5px;
 }
