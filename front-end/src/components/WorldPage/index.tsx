@@ -18,7 +18,7 @@ const WorldPage = () => {
 
     return (
         <>
-            <WorldCanvas />
+            <WorldCanvas world={world} />
         </>
     )
 }

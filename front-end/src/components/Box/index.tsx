@@ -3,14 +3,17 @@ import { useRef , useState } from 'react'
 import * as THREE from 'three'
 
 
-const Box: React.FC<MeshProps> = (props) => {
+const Box = (props: MeshProps) => {
     // This reference will give us direct access to the mesh
     const mesh = useRef<THREE.Mesh>(null!)
     // Set up state for the hovered and active state
     const [hovered, setHover] = useState(false)
     const [active, setActive] = useState(false)
     // Rotate mesh every frame, this is outside of React without overhead
-    useFrame(() => (mesh.current.rotation.x += 0.01, mesh.current.rotation.y += 0.01))
+    useFrame(() => {
+      mesh.current.rotation.x += 0.01;
+      mesh.current.rotation.y += 0.01;
+    })
 
     return (
       <mesh
