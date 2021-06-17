@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom'
 import { worlds } from '../../customTypings'
 import { RootState, useAppDispatch } from '../../store'
 import { getCurrentWorld } from '../../store/worlds'
+import WorldCanvas from '../WorldCanvas'
 
 const WorldPage = () => {
     const dispatch = useAppDispatch()
@@ -17,7 +18,7 @@ const WorldPage = () => {
 
     return (
         <>
-            <div>{world?.name}</div>
+            <WorldCanvas />
         </>
     )
 }
