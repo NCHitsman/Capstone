@@ -9,3 +9,18 @@ export interface worlds {
     createdAt: Date,
     updatedAt: Date
 }
+
+export interface settlements {
+    id: number,
+    name: string,
+    world_id: number,
+    x_cordinate: number,
+    y_cordinate: number,
+    type: number,
+    population: number,
+    wealth: number,
+    state: string,
+    created_tick: number,
+    createdAt: Date,
+    updatedAt: Date
+}

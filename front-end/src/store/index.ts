@@ -5,10 +5,12 @@ import {useDispatch} from 'react-redux'
 import {logger} from 'redux-logger'
 import { ThunkDispatch } from "redux-thunk";
 import worldReducer from "./worlds";
+import settlementReducer from "./settlement";
 
 const rootReducer = combineReducers({
   session: sessionReducer,
-  worlds: worldReducer
+  worlds: worldReducer,
+  settlements: settlementReducer
 });
 
 export const store = configureStore({

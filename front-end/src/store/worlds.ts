@@ -39,13 +39,19 @@ export const getCurrentWorld = (worldId: string): ThunkAction<void, RootState, u
 export const createNewWorld = (name: string, world_size: number, current_year: number, owner_id: number | undefined)
 : ThunkAction<void, RootState, unknown, AnyAction> => async dispatch => {
     if (owner_id) {
+        const tick = current_year * 8760
         const response = await csrfFetch('/api/worlds/createNewWorld', {
             method: 'POST',
             body: JSON.stringify({
                 name,
-                world_size,
-                current_year,
                 owner_id,
+                world_size,
+                hour: 0,
+                day: 1,
+                year: current_year,
+                map_seed: null,
+                current_tick: tick,
+                created_tick: tick,
             })
         })
         const worldId = await response.json()
@@ -58,8 +64,8 @@ const worldReducer = (state: {
     userWorlds: worlds[],
     currentWorld: worlds | null
 } = {
-         userWorlds: [],
-         currentWorld: null
+        userWorlds: [],
+        currentWorld: null
         },
     action: AnyAction) => {
     let newState;

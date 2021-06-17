@@ -3,6 +3,7 @@ import { RootState, useAppDispatch } from '../../store';
 import { createNewWorld } from '../../store/worlds'
 import { useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
+import SettlementForm from '../SettlementForm';
 
 const CreateNewWorld = () => {
     const dispatch = useAppDispatch()
@@ -13,14 +14,16 @@ const CreateNewWorld = () => {
 
     const currentUserId = useSelector((state: RootState )=> state.session.user?.id)
 
+    const createSettlementForm = () => {
+        return (
+            <SettlementForm worldId={1} worldSize={50} />
+        )
+    }
 
     const createNewWorldSubmitHandler = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         const worldId = await dispatch(createNewWorld(worldName, +worldSize, +startingYear, currentUserId))
         // await dispatch(getUserWorlds(currentUserId))
-
-        // TODO: Create Dispatches for making Settlements with World data
-
         history.push(`/world/${worldId}`)
     }
 
@@ -59,6 +62,9 @@ const CreateNewWorld = () => {
                 </label>
                 <input type="submit" value="Submit" />
             </form>
+            <button
+            onClick = {e => {createSettlementForm()}}
+            >Create Settlement</button>
         </>
     )
 }

@@ -3,9 +3,9 @@ import { Canvas } from '@react-three/fiber'
 import { OrbitControls, PerspectiveCamera } from '@react-three/drei'
 import Box from '../Box'
 import './WorldCanvas.css'
-import { worlds } from '../../customTypings'
+import { settlements, worlds } from '../../customTypings'
 
-const WorldCanvas = ({world}: {world: worlds | null }) => {
+const WorldCanvas = ({world, settlements}: {world: worlds | null, settlements: settlements[] | null}) => {
 
     const myCamera = useRef()
 
