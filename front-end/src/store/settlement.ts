@@ -22,8 +22,8 @@ export const getCurrentSettlements = (worldId: string): ThunkAction<void, RootSt
 
 export const createNewSettlement = (name: string, world_id: number, world_size: number, type: number, created_tick: number)
 : ThunkAction<void, RootState, unknown, AnyAction> => async dispatch => {
-    const x_cordinate = Math.floor(Math.random() > .5 ? Math.random() * world_size : Math.random() * -world_size)
-    const y_cordinate = Math.floor(Math.random() > .5 ? Math.random() * world_size : Math.random() * -world_size)
+    const x_cordinate = Math.floor(Math.random() > .5 ? Math.random() * world_size / 2 : Math.random() * -world_size / 2)
+    const y_cordinate = Math.floor(Math.random() > .5 ? Math.random() * world_size / 2 : Math.random() * -world_size / 2)
     let population;
     let wealthPerPerson;
     switch (type) { // ToDo Tune numbers for accuracy

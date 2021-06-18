@@ -6,7 +6,7 @@ module.exports = {
       {
           name: 'Demo World',
           owner_id: 1,
-          world_size: 50,
+          world_size: 100,
           map_seed: null,
           hour: 0,
           day: 1,
@@ -19,7 +19,7 @@ module.exports = {
       {
         name: 'Demo World2',
         owner_id: 1,
-        world_size: 50,
+        world_size: 150,
         map_seed: null,
         hour: 0,
         day: 1,

@@ -2,3 +2,23 @@
     min-width: 100%;
     min-height: calc(100vh - 50px - 45px);
 }
+
+.settlement__cards__parent{
+    display: flex;
+    flex-direction: column;
+    background-color: pink;
+    position: fixed;
+    top: 90px;
+}
+
+.settlement__info__cont{
+    display: flex;
+    flex-direction: column;
+    border: 1px solid black;
+    margin: 5px;
+    padding: 5px
+}
+
+.none{
+    display:none
+}
