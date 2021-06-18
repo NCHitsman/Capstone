@@ -13,8 +13,6 @@ const currentSettlement = (settlements: settlements[]) => {
     }
 }
 
-
-
 export const getCurrentSettlements = (worldId: string): ThunkAction<void, RootState, unknown, AnyAction> => async dispatch => {
     const response = await csrfFetch(`/api/settlements/getSettlements/${worldId}`)
     const data = await response.json()
@@ -22,15 +20,13 @@ export const getCurrentSettlements = (worldId: string): ThunkAction<void, RootSt
     return response
 }
 
-
-
 export const createNewSettlement = (name: string, world_id: number, world_size: number, type: number, created_tick: number)
 : ThunkAction<void, RootState, unknown, AnyAction> => async dispatch => {
     const x_cordinate = Math.floor(Math.random() > .5 ? Math.random() * world_size : Math.random() * -world_size)
     const y_cordinate = Math.floor(Math.random() > .5 ? Math.random() * world_size : Math.random() * -world_size)
     let population;
     let wealthPerPerson;
-    switch (type) {
+    switch (type) { // ToDo Tune numbers for accuracy
         case 1:
             population = Math.abs(Math.floor(Math.random() * 10000))
             console.log('1')
@@ -66,6 +62,7 @@ export const createNewSettlement = (name: string, world_id: number, world_size: 
         })
     })
 }
+
 
 
 const settlementReducer = (state: {

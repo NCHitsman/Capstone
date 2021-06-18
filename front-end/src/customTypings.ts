@@ -24,3 +24,9 @@ export interface settlements {
     createdAt: Date,
     updatedAt: Date
 }
+
+export interface settlementObjectT {
+    settlementName: string,
+    settlementType: string,
+    createdYear: string
+}

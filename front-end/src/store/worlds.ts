@@ -54,7 +54,7 @@ export const createNewWorld = (name: string, world_size: number, current_year: n
                 created_tick: tick,
             })
         })
-        const worldId = await response.json()
+        const worldId: number = await response.json()
         return worldId
     }
 }
