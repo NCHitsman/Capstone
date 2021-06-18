@@ -16,7 +16,7 @@ const CreateNewWorld = () => {
 
     const createSettlementForm = () => {
         return (
-            <SettlementForm worldId={1} worldSize={50} />
+            <SettlementForm worldId={1} worldSize={50} /> // ToDo make this work some how
         )
     }
 
@@ -63,7 +63,7 @@ const CreateNewWorld = () => {
                 <input type="submit" value="Submit" />
             </form>
             <button
-            onClick = {e => {createSettlementForm()}}
+            onClick = {e => {createSettlementForm()}} // ToDo make this work some how
             >Create Settlement</button>
         </>
     )
