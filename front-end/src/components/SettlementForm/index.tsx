@@ -1,6 +1,4 @@
 import { FormEvent, useState } from "react"
-import { useAppDispatch } from "../../store"
-import { createNewSettlement, getCurrentSettlements } from '../../store/settlement'
 import { settlementObjectT } from '../../customTypings'
 
 
