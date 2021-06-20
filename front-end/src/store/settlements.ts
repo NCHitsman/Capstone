@@ -68,8 +68,8 @@ export const createNewSettlement = (name: string, world_id: number, world_size: 
 const settlementReducer = (state: {
     currentSettlements: settlements[] | null
 } = {
-        currentSettlements: null
-        },
+    currentSettlements: null
+    },
     action: AnyAction) => {
     let newState;
 

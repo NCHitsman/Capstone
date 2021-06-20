@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import SettlementForm from '../SettlementForm';
 import { settlementObjectT } from '../../customTypings'
-import { createNewSettlement } from '../../store/settlement';
+import { createNewSettlement } from '../../store/settlements';
 
 const CreateNewWorld = () => {
     const dispatch = useAppDispatch()

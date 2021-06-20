@@ -2,19 +2,18 @@ import { Canvas } from '@react-three/fiber'
 import { OrbitControls } from '@react-three/drei'
 import SettlementBox from '../SettlementBox'
 import './WorldCanvas.css'
-import { settlements, worlds } from '../../customTypings'
+import { roads, settlements, worlds } from '../../customTypings'
 import { useState } from 'react'
 import { useEffect } from 'react'
+import RoadLine from '../RoadLine'
 
-const WorldCanvas = ({world, settlements}: {world: worlds | null, settlements: settlements[] | null}) => {
+const WorldCanvas = ({world, settlements, roads}: {world: worlds | null, settlements: settlements[] | null, roads: roads[] | null}) => {
     const [hidden, setHidden] = useState(true)
     const [isLoaded, setIsLoaded] = useState(false)
     const [settlementName, setSettlementName] = useState('')
     const [settlementType, setSettlementType] = useState('')
     const [settlementPop, setSettlementPop] = useState(0)
     const [settlementWealth, setSettlementWealth] = useState(0)
-
-    let x
 
     useEffect(() => {
         if (world && settlements) {
@@ -61,6 +60,13 @@ const WorldCanvas = ({world, settlements}: {world: worlds | null, settlements: s
                             />
                         )
                     })}
+                    {roads?.map(road => {
+                        return (
+                            <RoadLine
+                            
+                            />
+                        )
+                    })}
                 </Canvas>
                 <div className={hidden? 'settlement__cards__parent none':'settlement__cards__parent'}>
                     <div hidden={hidden}>
@@ -76,7 +82,7 @@ const WorldCanvas = ({world, settlements}: {world: worlds | null, settlements: s
                         Wealth: {settlementWealth}
                     </div>
                     <button onClick={() => {
-                        if (hidden == false) setHidden(true)
+                        if (hidden === false) setHidden(true)
                     }}>Close</button>
                  </div>
             </div>

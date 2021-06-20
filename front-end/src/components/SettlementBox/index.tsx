@@ -34,10 +34,10 @@ const SettlementBox = (props: MeshProps & {
       }
   }
 
-    // useFrame(() => {
-    //   mesh.current.rotation.x += 0.01;
-    //   mesh.current.rotation.y += 0.01;
-    // })
+    useFrame(() => {
+      mesh.current.rotation.x += 0.01;
+      mesh.current.rotation.y += 0.01;
+    })
 
     return (
       <>

@@ -30,3 +30,13 @@ export interface settlementObjectT {
     settlementType: string,
     createdYear: string
 }
+
+export interface roads {
+    id: number,
+    world_id: number,
+    settlement_start: number,
+    settlement_end: number,
+    distance: number | null,
+    createdAt: Date,
+    updatedAt: Date
+}

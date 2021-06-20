@@ -5,12 +5,14 @@ import {useDispatch} from 'react-redux'
 import {logger} from 'redux-logger'
 import { ThunkDispatch } from "redux-thunk";
 import worldReducer from "./worlds";
-import settlementReducer from "./settlement";
+import settlementReducer from "./settlements";
+import roadReducer from "./roads";
 
 const rootReducer = combineReducers({
   session: sessionReducer,
   worlds: worldReducer,
-  settlements: settlementReducer
+  settlements: settlementReducer,
+  roads: roadReducer
 });
 
 export const store = configureStore({

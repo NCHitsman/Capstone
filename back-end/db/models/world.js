@@ -60,6 +60,7 @@ module.exports = (sequelize, DataTypes) => {
     World.hasMany(models.Settlement, { foreignKey: 'world_id' })
     World.hasMany(models.Civilian, { foreignKey: 'world_id' })
     World.hasMany(models.Item, { foreignKey: 'world_id' })
+    World.hasMany(models.Road, { foreignKey: 'world_id' })
   };
   return World;
 };
