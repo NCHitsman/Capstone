@@ -9,19 +9,12 @@ import { useEffect } from 'react'
 const WorldCanvas = ({world, settlements}: {world: worlds | null, settlements: settlements[] | null}) => {
     const [hidden, setHidden] = useState(true)
     const [isLoaded, setIsLoaded] = useState(false)
+    const [settlementName, setSettlementName] = useState('')
+    const [settlementType, setSettlementType] = useState('')
+    const [settlementPop, setSettlementPop] = useState(0)
+    const [settlementWealth, setSettlementWealth] = useState(0)
 
-    const settlementType = (type: number) => {
-        switch (type) {
-            case 1:
-                return 'Village'
-            case 2:
-                return 'Town'
-            case 3:
-                return 'City'
-            default:
-                return 'Capital'
-        }
-    }
+    let x
 
     useEffect(() => {
         if (world && settlements) {
@@ -32,8 +25,13 @@ const WorldCanvas = ({world, settlements}: {world: worlds | null, settlements: s
     return (
         <>
             {isLoaded ?
-            <>
-                <Canvas className='WorldCanvas' camera={{ fov: 75, near: 0.1, far: 1000, position: [0, 50, 65] }}>
+            <div
+            // onClick={() => hidden == false ? setHidden(true) : x=0}
+            >
+                <Canvas
+                className='WorldCanvas'
+                camera={{ fov: 75, near: 0.1, far: 1000, position: [0, 50, 65]
+                }}>
                     <axesHelper />
                     <gridHelper args={[world?.world_size, world?.world_size]}/>
                     <OrbitControls />
@@ -41,7 +39,12 @@ const WorldCanvas = ({world, settlements}: {world: worlds | null, settlements: s
                     <pointLight position={[10, 10, 10]} />
                     {settlements?.map(settlement => {
                         return (
-                            <SettlementBox hidden={hidden} setHidden={setHidden} key={settlement.id} position={[settlement.x_cordinate, 0, settlement.y_cordinate]}
+                            <SettlementBox
+                            className='settlementBox'
+                            hidden={hidden}
+                            setHidden={setHidden}
+                            key={settlement.id}
+                            position={[settlement.x_cordinate, 0, settlement.y_cordinate]}
                             scale={ settlement.type === 1 ? 1 :
                                     settlement.type === 2 ? 2 :
                                     settlement.type === 3 ? 3 : 4
@@ -50,34 +53,33 @@ const WorldCanvas = ({world, settlements}: {world: worlds | null, settlements: s
                                     settlement.type === 2 ? 'green' :
                                     settlement.type === 3 ? 'yellow' : 'red'
                             }
+                            setSettlementName={setSettlementName}
+                            setSettlementType={setSettlementType}
+                            setSettlementPop={setSettlementPop}
+                            setSettlementWealth={setSettlementWealth}
+                            settlement={settlement}
                             />
                         )
                     })}
                 </Canvas>
                 <div className={hidden? 'settlement__cards__parent none':'settlement__cards__parent'}>
-                    {settlements?.map(settlement => {
-                        return (
-                            <div key={settlement.id} className='settlement__info__cont' hidden={hidden} style={{backgroundColor:
-                            settlement.type === 1 ? 'lightblue' :
-                            settlement.type === 2 ? 'green' :
-                            settlement.type === 3 ? 'yellow' : 'red'}}>
-                                <div hidden={hidden}>
-                                    Name: {settlement.name}
-                                </div>
-                                <div hidden={hidden}>
-                                    Type: {settlementType(settlement.type)}
-                                </div>
-                                <div hidden={hidden}>
-                                    Population: {settlement.population}
-                                </div>
-                                <div hidden={hidden}>
-                                    Wealth: {settlement.wealth}
-                                </div>
-                            </div>
-                        )
-                    })}
-                </div>
-            </>
+                    <div hidden={hidden}>
+                        Name: {settlementName}
+                    </div>
+                    <div hidden={hidden}>
+                        Type: {settlementType}
+                    </div>
+                    <div hidden={hidden}>
+                        Population: {settlementPop}
+                    </div>
+                    <div hidden={hidden}>
+                        Wealth: {settlementWealth}
+                    </div>
+                    <button onClick={() => {
+                        if (hidden == false) setHidden(true)
+                    }}>Close</button>
+                 </div>
+            </div>
             :
             <h1>Loading</h1>
             }

@@ -46,7 +46,7 @@ export const createNewSettlement = (name: string, world_id: number, world_size: 
             population = Math.abs(Math.floor(Math.random() * ((1000000 - 300000) + 300000)))
             wealthPerPerson = +parseFloat((Math.random() * (3500 - 1000) + 1000).toString()).toFixed(2)
     }
-    const wealth = (population * wealthPerPerson).toFixed(2);
+    const wealth = Math.abs(+(population * wealthPerPerson * (Math.random() * (1 - 0.5) + 0.5)).toFixed(2))
     await csrfFetch('/api/settlements/createNewSettlement', {
         method: 'POST',
         body: JSON.stringify({
