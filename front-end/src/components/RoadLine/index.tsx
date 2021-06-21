@@ -1,15 +1,26 @@
-import { useMemo } from 'react';
+import { Line } from '@react-three/drei';
+import { extend } from '@react-three/fiber';
+// import { useLayoutEffect } from 'react';
+// import { useRef } from 'react';
 import * as THREE from 'three'
+import { Vector3 } from 'three';
 
-const RoadLine = ({start, end}: {start: THREE.Vector3, end: THREE.Vector3}) => {
+extend({ Line_: THREE.Line })
 
-    const geometry = useMemo(() => new THREE.BufferGeometry().setFromPoints([start, end]), [start, end]);
+const RoadLine = ({start, end}: {start: Vector3, end: Vector3}) => {
+
+    // const ref = useRef<THREE.Line>(null!)
+
+    // useLayoutEffect(() => {
+    //   ref.current.geometry.setFromPoints([start, end].map((point) => new THREE.Vector3(...point)))
+    // }, [start, end])
 
     return (
-      <line>
-        <primitive attach="geometry" object={geometry} />
-        <lineBasicMaterial color="red"/>
-      </line>
+      // <line_ ref={ref}>
+      //   <bufferGeometry />
+      //   <lineBasicMaterial color="red"/>
+      // </line_>
+      <Line points={[start, end]} lineWidth={1} color='green'/>
     )
 }
 

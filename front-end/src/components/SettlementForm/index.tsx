@@ -57,12 +57,16 @@ const SettlementForm = ({form, index, inputList, setInputList}:
                                 onChange={(e) => handleInputChange(e)}
                             />
                         </label>
-                        <button
-                            onClick={() => handleRemove()}
-                        >Remove</button>
+
                         <button
                             onClick={() => handleAdd()}
                         >Add</button>
+
+                        {index >= 1 &&
+                        <button
+                            onClick={() => handleRemove()}
+                        >Remove</button>}
+
                     </div>
     )
 }

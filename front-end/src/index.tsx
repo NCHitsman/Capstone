@@ -7,9 +7,21 @@ import { Provider } from "react-redux";
 import { store } from './store/index'
 import { restoreCSRF, csrfFetch } from "./store/csrf";
 import * as sessionActions from "./store/session";
+import { ReactThreeFiber } from '@react-three/fiber';
+import * as THREE from 'three';
 
 declare global {
   interface Window { csrfFetch: any; store: any; sessionActions: any, __REDUX_DEVTOOLS_EXTENSION_COMPOSE__: any }
+}
+
+declare global {
+  // tslint:disable-next-line: no-namespace
+  namespace JSX {
+    // tslint:disable-next-line: interface-name
+    interface IntrinsicElements {
+      line_: ReactThreeFiber.Object3DNode<THREE.Line, typeof THREE.Line>
+    }
+  }
 }
 
 if (process.env.NODE_ENV !== "production") {
