@@ -8,7 +8,7 @@ const RoadLine = ({start, end}: {start: THREE.Vector3, end: THREE.Vector3}) => {
     return (
       <line>
         <primitive attach="geometry" object={geometry} />
-        <lineBasicMaterial attach="material" color="green" />
+        <lineBasicMaterial color="red"/>
       </line>
     )
 }

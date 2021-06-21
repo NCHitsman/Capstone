@@ -15,13 +15,15 @@ const CreateNewWorld = () => {
     const [startingYear, setStartingYear] = useState('')
     const [settlementObject, setSettlementObject] = useState<settlementObjectT[] | []>([]) //holds all settlements made using the settlement form
 
+    const [inputList, setInputList] = useState([{ settlementName: '', settlementType: '1', createdYear: '' }]);
+
     const currentUserId = useSelector((state: RootState )=> state.session.user?.id)
 
     const createNewWorldSubmitHandler = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         const worldId: void | number = await dispatch<void | number>(createNewWorld(worldName, +worldSize, +startingYear, currentUserId))
         if (worldId) {
-            settlementObject.forEach(async settlementData => {
+            inputList.forEach(async settlementData => {
                 const {settlementName, settlementType, createdYear} = settlementData
                 await dispatch(createNewSettlement(settlementName, worldId, +worldSize, +settlementType, +createdYear))
             })
@@ -30,11 +32,15 @@ const CreateNewWorld = () => {
     }
 
 
-    // const createSettlementForm = () => {
-    //     return (
-    //         <SettlementForm settlementObject={settlementObject} setSettlementObject={setSettlementObject} /> // ToDo make this work some how
-    //     )
-    // }
+    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>, index: number) => {
+        const value: string = e.target.value;
+        const name: string = e.target.name;
+        const list: any = [...inputList];
+        list[index][name] = value;
+        setInputList(list);
+      };
+
+
 
 
     return (
@@ -84,7 +90,45 @@ const CreateNewWorld = () => {
             <div>.</div>
             <div>.</div>
 
-            <SettlementForm settlementObject={settlementObject} setSettlementObject={setSettlementObject} />
+            {/* <SettlementForm settlementObject={settlementObject} setSettlementObject={setSettlementObject} /> */}
+
+            {inputList.map((form, index) => {
+                return (
+                    <div>Settlement Form:
+                        <label>Name:
+                            <input
+                                name={'settlementName'}
+                                value={form.settlementName}
+                                onChange={(e) => handleInputChange(e, index)}
+                            />
+                        </label>
+                        <label>Settlement Type:
+                            <input
+                                name={'settlementType'}
+                                value={form.settlementType}
+                                onChange={(e) => handleInputChange(e, index)}
+                            />
+                        </label>
+                        <label>Created Year::
+                            <input
+                                name={'createdYear'}
+                                value={form.createdYear}
+                                onChange={(e) => handleInputChange(e, index)}
+                            />
+                        </label>
+                        <button
+                            onClick={() => {
+                                const newList = [...inputList]
+                                newList.splice(index, 1);
+                                setInputList(newList)
+                            }}
+                        >Remove</button>
+                        <button
+                            onClick={() => setInputList([...inputList, { settlementName: '', settlementType: '1', createdYear: '' }])}
+                        >Add</button>
+                    </div>
+                )
+            })}
 
 
             {/* <button
