@@ -6,10 +6,18 @@ import { csrfFetch } from "./csrf";
 // const CREATE_SETTLEMENTS = 'settlements/CREATE_SETTLEMENTS'
 const CURRENT_SETTLEMENTS = 'settlements/CURRENT_SETTLEMENTS'
 
+const CLEAR_SETTLEMENTS = 'Settlements/CLEAR_SETTLEMENTS'
+
 const currentSettlement = (settlements: settlements[]) => {
     return {
         type: CURRENT_SETTLEMENTS,
         payload: settlements
+    }
+}
+
+const clearSettlements = () => {
+    return {
+        type: CLEAR_SETTLEMENTS,
     }
 }
 
@@ -63,6 +71,11 @@ export const createNewSettlement = (name: string, world_id: number, world_size: 
     })
 }
 
+export const clearCurrentSettlements = (): ThunkAction<void, RootState, unknown, AnyAction> => async dispatch => {
+    clearSettlements()
+    return true
+}
+
 
 
 const settlementReducer = (state: {
@@ -77,6 +90,9 @@ const settlementReducer = (state: {
         case CURRENT_SETTLEMENTS:
             newState = { ...state }
             newState.currentSettlements = action.payload
+            return newState
+        case CLEAR_SETTLEMENTS:
+            newState = {currentSettlements: null}
             return newState
         default:
             return state

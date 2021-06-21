@@ -25,12 +25,6 @@ export interface settlements {
     updatedAt: Date
 }
 
-export interface settlementObjectT {
-    settlementName: string,
-    settlementType: string,
-    createdYear: string
-}
-
 export interface roads {
     id: number,
     world_id: number,

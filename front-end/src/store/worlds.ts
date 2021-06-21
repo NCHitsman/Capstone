@@ -5,6 +5,8 @@ import { worlds } from '../customTypings'
 
 const USER_WORLDS = 'worlds/USER_WORLDS'
 const CURRENT_WORLD = 'worlds/CURRENT_WORLD'
+const CLEAR_CURRENT_WORLD = 'roads/CLEAR_CURRENT_WORLD'
+
 
 const userWorlds = (worlds: object[]) => {
     return {
@@ -19,6 +21,13 @@ const currentWorld = (world: object) => {
         payload: world
     }
 }
+
+const clearWorld = () => {
+    return {
+        type: CLEAR_CURRENT_WORLD,
+    }
+}
+
 
 export const getUserWorlds = (userId: number | null | undefined): ThunkAction<void, RootState, unknown, AnyAction> => async dispatch => {
     if (userId) {
@@ -59,6 +68,11 @@ export const createNewWorld = (name: string, world_size: number, current_year: n
     }
 }
 
+export const clearCurrentWorld = (): ThunkAction<void, RootState, unknown, AnyAction> => async dispatch => {
+    clearWorld()
+    return true
+}
+
 
 const worldReducer = (state: {
     userWorlds: worlds[],
@@ -78,6 +92,10 @@ const worldReducer = (state: {
         case CURRENT_WORLD:
             newState = {...state}
             newState.currentWorld = action.payload
+            return newState
+        case CLEAR_CURRENT_WORLD:
+            newState = {...state}
+            newState.currentWorld = null
             return newState
         default:
             return state

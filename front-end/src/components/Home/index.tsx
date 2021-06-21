@@ -2,10 +2,12 @@ import WorldPreview from '../WorldPreview'
 import { useHistory } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { RootState, useAppDispatch } from '../../store'
-import { getUserWorlds } from '../../store/worlds'
+import { clearCurrentWorld, getUserWorlds } from '../../store/worlds'
 import { useEffect } from 'react'
 import { useState } from 'react'
 import './Home.css'
+import { clearCurrentRoads } from '../../store/roads'
+import { clearCurrentSettlements } from '../../store/settlements'
 
 const Home = () => {
     const dispatch = useAppDispatch()
@@ -23,6 +25,13 @@ const Home = () => {
             setIsLoaded(true)
         }
     }, [userWorlds, isLoaded])
+
+    useEffect(() => {
+        console.log('yo')
+        dispatch(clearCurrentRoads())
+        dispatch(clearCurrentSettlements())
+        dispatch(clearCurrentWorld())
+    }, [dispatch])
 
     return (
         <div className='home__contents__container'>
