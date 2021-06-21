@@ -6,6 +6,7 @@ import { roads, settlements, worlds } from '../../customTypings'
 import { useState } from 'react'
 import { useEffect } from 'react'
 import RoadLine from '../RoadLine'
+import * as THREE from 'three'
 
 const WorldCanvas = ({world, settlements, roads}: {world: worlds | null, settlements: settlements[] | null, roads: roads[] | null}) => {
     const [hidden, setHidden] = useState(true)
@@ -44,13 +45,17 @@ const WorldCanvas = ({world, settlements, roads}: {world: worlds | null, settlem
                             setHidden={setHidden}
                             key={settlement.id}
                             position={[settlement.x_cordinate, 0, settlement.y_cordinate]}
-                            scale={ settlement.type === 1 ? 1 :
-                                    settlement.type === 2 ? 2 :
-                                    settlement.type === 3 ? 3 : 4
+                            scale={
+                                // settlement.type === 1 ? 1 :
+                                // settlement.type === 2 ? 2 :
+                                // settlement.type === 3 ? 3 : 4
+                                1
                             }
-                            color={ settlement.type === 1 ? 'lightblue' :
-                                    settlement.type === 2 ? 'green' :
-                                    settlement.type === 3 ? 'yellow' : 'red'
+                            color={
+                                // settlement.type === 1 ? 'lightblue' :
+                                // settlement.type === 2 ? 'green' :
+                                // settlement.type === 3 ? 'yellow' : 'red'
+                                'red'
                             }
                             setSettlementName={setSettlementName}
                             setSettlementType={setSettlementType}
@@ -63,7 +68,9 @@ const WorldCanvas = ({world, settlements, roads}: {world: worlds | null, settlem
                     {roads?.map(road => {
                         return (
                             <RoadLine
-                            
+                            key={road.id}
+                            start={new THREE.Vector3(1,0,3)}
+                            end={new THREE.Vector3(11,0,33)}
                             />
                         )
                     })}

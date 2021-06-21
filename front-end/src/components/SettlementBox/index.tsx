@@ -1,4 +1,4 @@
-import { MeshProps, useFrame } from '@react-three/fiber'
+import { MeshProps } from '@react-three/fiber'
 import { useRef , useState } from 'react'
 import * as THREE from 'three'
 import { settlements } from '../../customTypings'
@@ -34,10 +34,6 @@ const SettlementBox = (props: MeshProps & {
       }
   }
 
-    useFrame(() => {
-      mesh.current.rotation.x += 0.01;
-      mesh.current.rotation.y += 0.01;
-    })
 
     return (
       <>
