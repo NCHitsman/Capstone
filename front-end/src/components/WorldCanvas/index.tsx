@@ -33,7 +33,7 @@ const WorldCanvas = ({world, settlements, roads}: {world: worlds | null, settlem
                 camera={{ fov: 75, near: 0.1, far: 1000, position: [0, 50, 65]
                 }}>
                     <axesHelper />
-                    <gridHelper args={[world?.world_size, world?.world_size]}/>
+                    {/* <gridHelper args={[world?.world_size, world?.world_size]}/> */}
                     <OrbitControls />
                     <ambientLight />
                     <pointLight position={[10, 10, 10]} />
@@ -46,16 +46,16 @@ const WorldCanvas = ({world, settlements, roads}: {world: worlds | null, settlem
                             key={settlement.id}
                             position={[settlement.x_cordinate, 0, settlement.y_cordinate]}
                             scale={
-                                // settlement.type === 1 ? 1 :
-                                // settlement.type === 2 ? 2 :
-                                // settlement.type === 3 ? 3 : 4
-                                1
+                                settlement.type === 1 ? 1 :
+                                settlement.type === 2 ? 2 :
+                                settlement.type === 3 ? 3 : 4
+                                // 1
                             }
                             color={
-                                // settlement.type === 1 ? 'lightblue' :
-                                // settlement.type === 2 ? 'green' :
-                                // settlement.type === 3 ? 'yellow' : 'red'
-                                'red'
+                                settlement.type === 1 ? 'lightblue' :
+                                settlement.type === 2 ? 'green' :
+                                settlement.type === 3 ? 'yellow' : 'red'
+                                // 'red'
                             }
                             setSettlementName={setSettlementName}
                             setSettlementType={setSettlementType}
@@ -66,11 +66,15 @@ const WorldCanvas = ({world, settlements, roads}: {world: worlds | null, settlem
                         )
                     })}
                     {roads?.map(road => {
+                        let x1 = road.start.x_cordinate
+                        let y1 = road.start.y_cordinate
+                        let x2 = road.end.x_cordinate
+                        let y2 = road.end.y_cordinate
                         return (
                             <RoadLine
                             key={road.id}
-                            start={new THREE.Vector3(1,0,3)}
-                            end={new THREE.Vector3(11,0,33)}
+                            start={new THREE.Vector3(x1,0,y1)}
+                            end={new THREE.Vector3(x2,0,y2)}
                             />
                         )
                     })}

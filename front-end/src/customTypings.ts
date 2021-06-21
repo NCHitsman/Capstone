@@ -38,5 +38,7 @@ export interface roads {
     settlement_end: number,
     distance: number | null,
     createdAt: Date,
-    updatedAt: Date
+    updatedAt: Date,
+    start: settlements,
+    end: settlements,
 }
