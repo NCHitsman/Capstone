@@ -39,7 +39,6 @@ const Home = () => {
     }, [userWorlds, isLoaded])
 
     useEffect(() => {
-        console.log('yo')
         dispatch(clearCurrentRoads())
         dispatch(clearCurrentSettlements())
         dispatch(clearCurrentWorld())

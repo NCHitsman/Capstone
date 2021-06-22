@@ -1,7 +1,7 @@
 import { MeshProps } from '@react-three/fiber'
 import { useRef , useState } from 'react'
 import * as THREE from 'three'
-import { settlements } from '../../customTypings'
+import { settlement } from '../../customTypings'
 
 const SettlementBox = (props: MeshProps & {
     className: string,
@@ -13,7 +13,7 @@ const SettlementBox = (props: MeshProps & {
     setSettlementType: React.Dispatch<React.SetStateAction<string>>,
     setSettlementPop: React.Dispatch<React.SetStateAction<number>>,
     setSettlementWealth: React.Dispatch<React.SetStateAction<number>>,
-    settlement: settlements
+    settlement: settlement
     } ) => {
     // This reference will give us direct access to the mesh
     const mesh = useRef<THREE.Mesh>(null!)

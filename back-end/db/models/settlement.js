@@ -61,8 +61,6 @@ module.exports = (sequelize, DataTypes) => {
     Settlement.hasMany(models.Civilian, { foreignKey: 'current_settlement_id'})
     Settlement.hasMany(models.Import, { foreignKey: 'settlement_id'})
     Settlement.hasMany(models.Export, { foreignKey: 'settlement_id'})
-    Settlement.hasMany(models.Road, { foreignKey: 'settlement_start'})
-    Settlement.hasMany(models.Road, { foreignKey: 'settlement_end'})
   };
   return Settlement;
 };

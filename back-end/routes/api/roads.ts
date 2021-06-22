@@ -11,14 +11,7 @@ router.get('/getRoads/:worldId', asyncHandler(async (req: Request, res: Response
     const roads = await Road.findAll({
         where: {
             world_id: worldId
-        },
-        include: [{
-            model: Settlement,
-            as: 'start'
-        },{
-            model: Settlement,
-            as: 'end'
-        }]
+        }
     })
     res.json(roads)
 }))

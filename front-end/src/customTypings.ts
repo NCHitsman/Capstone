@@ -10,7 +10,7 @@ export interface worlds {
     updatedAt: Date
 }
 
-export interface settlements {
+export interface settlement {
     id: number,
     name: string,
     world_id: number,
@@ -25,14 +25,17 @@ export interface settlements {
     updatedAt: Date
 }
 
-export interface roads {
+export interface settlements { [key: number]: settlement}
+
+export interface road {
     id: number,
     world_id: number,
-    settlement_start: number,
-    settlement_end: number,
+    x_cordinate: number,
+    y_cordinate: number,
     distance: number | null,
     createdAt: Date,
     updatedAt: Date,
     start: settlements,
     end: settlements,
 }
+export interface roads { [key: number]: road}

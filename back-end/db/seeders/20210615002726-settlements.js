@@ -5,8 +5,8 @@ module.exports = {
     await queryInterface.bulkInsert('Settlements', [{
       name: 'Village Village',
       world_id: 1,
-      x_cordinate: 5,
-      y_cordinate: 25,
+      x_cordinate: -5,
+      y_cordinate: -10,
       type: 1,
       population: 500,
       wealth: 500.00,
@@ -18,8 +18,8 @@ module.exports = {
     {
       name: 'Town Town',
       world_id: 1,
-      x_cordinate: 30,
-      y_cordinate: 20,
+      x_cordinate: 10,
+      y_cordinate: 10,
       type: 2,
       population: 5000,
       wealth: 5000.00,
@@ -31,7 +31,7 @@ module.exports = {
     {
       name: 'City City',
       world_id: 1,
-      x_cordinate: -45,
+      x_cordinate: -5,
       y_cordinate: 15,
       type: 3,
       population: 50000,
@@ -44,8 +44,8 @@ module.exports = {
     {
       name: 'Capital Capital',
       world_id: 1,
-      x_cordinate: 25,
-      y_cordinate: -30,
+      x_cordinate: 20,
+      y_cordinate: -15,
       type: 4,
       population: 500000,
       wealth: 500000.00,

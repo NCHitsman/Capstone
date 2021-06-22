@@ -5,32 +5,29 @@ module.exports = {
     await queryInterface.bulkInsert('Roads', [
       {
         world_id: 1,
-        settlement_start: 1,
-        settlement_end: 2,
+        x_cordinate: 5,
+        y_cordinate: 5,
         distance: null,
         createdAt: new Date(),
         updatedAt: new Date()
-      },
-      {
+      },{
         world_id: 1,
-        settlement_start: 2,
-        settlement_end: 3,
+        x_cordinate: 15,
+        y_cordinate: 15,
         distance: null,
         createdAt: new Date(),
         updatedAt: new Date()
-      },
-      {
+      },{
         world_id: 1,
-        settlement_start: 3,
-        settlement_end: 4,
+        x_cordinate: -5,
+        y_cordinate: -5,
         distance: null,
         createdAt: new Date(),
         updatedAt: new Date()
-      },
-      {
+      },{
         world_id: 1,
-        settlement_start: 4,
-        settlement_end: 1,
+        x_cordinate: -15,
+        y_cordinate: -15,
         distance: null,
         createdAt: new Date(),
         updatedAt: new Date()

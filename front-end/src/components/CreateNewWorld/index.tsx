@@ -61,7 +61,6 @@ const CreateNewWorld = () => {
                     value={worldSize}
                     onChange={e => setWorldSize(e.target.value)}
                     >
-                        <option value='25' >25x25</option>
                         <option value='50' >50x50</option>
                         <option value='100' >100x100</option>
                         <option value='150' >150x150</option>

@@ -13,15 +13,13 @@ module.exports = {
         allowNull: false,
         references: { model: 'Worlds' }
       },
-      settlement_start: {
+      x_cordinate: {
         type: Sequelize.INTEGER,
         allowNull: false,
-        references: { model: 'Settlements' }
       },
-      settlement_end: {
+      y_cordinate: {
         type: Sequelize.INTEGER,
         allowNull: false,
-        references: { model: 'Settlements' }
       },
       distance: {
         type: Sequelize.INTEGER

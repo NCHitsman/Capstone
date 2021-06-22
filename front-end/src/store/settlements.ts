@@ -1,6 +1,6 @@
 import { AnyAction, ThunkAction } from "@reduxjs/toolkit";
 import { RootState } from ".";
-import { settlements } from "../customTypings";
+import { settlement, settlements } from "../customTypings";
 import { csrfFetch } from "./csrf";
 
 // const CREATE_SETTLEMENTS = 'settlements/CREATE_SETTLEMENTS'
@@ -8,7 +8,7 @@ const CURRENT_SETTLEMENTS = 'settlements/CURRENT_SETTLEMENTS'
 
 const CLEAR_SETTLEMENTS = 'Settlements/CLEAR_SETTLEMENTS'
 
-const currentSettlement = (settlements: settlements[]) => {
+const currentSettlement = (settlements: settlement[]) => {
     return {
         type: CURRENT_SETTLEMENTS,
         payload: settlements
@@ -37,17 +37,14 @@ export const createNewSettlement = (name: string, world_id: number, world_size: 
     switch (type) { // ToDo Tune numbers for accuracy
         case 1:
             population = Math.abs(Math.floor(Math.random() * 10000))
-            console.log('1')
             wealthPerPerson = +parseFloat((Math.random() * (500 - 250) + 250).toString()).toFixed(2)
             break
         case 2:
             population = Math.abs(Math.floor(Math.random() * ((100000 - 10000) + 10000)))
-            console.log('2')
             wealthPerPerson = +parseFloat((Math.random() * (1000 - 5000) + 500).toString()).toFixed(2)
             break
         case 3:
             population = Math.abs(Math.floor(Math.random() * ((300000 - 100000) + 100000)))
-            console.log('3')
             wealthPerPerson = +parseFloat((Math.random() * (2000 - 750) + 750).toString()).toFixed(2)
             break
         default:
@@ -78,21 +75,18 @@ export const clearCurrentSettlements = (): ThunkAction<void, RootState, unknown,
 
 
 
-const settlementReducer = (state: {
-    currentSettlements: settlements[] | null
-} = {
-    currentSettlements: null
-    },
-    action: AnyAction) => {
-    let newState;
+const settlementReducer = (state: settlements = {}, action: AnyAction) => {
+    let newState: settlements = {};
 
     switch( action.type ) {
         case CURRENT_SETTLEMENTS:
             newState = { ...state }
-            newState.currentSettlements = action.payload
+            action.payload.forEach((settlement: settlement) => {
+                newState[settlement.id] = settlement
+            })
             return newState
         case CLEAR_SETTLEMENTS:
-            newState = {currentSettlements: null}
+            newState = {}
             return newState
         default:
             return state

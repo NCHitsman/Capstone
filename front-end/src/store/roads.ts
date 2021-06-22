@@ -1,13 +1,13 @@
 import { AnyAction, ThunkAction } from "@reduxjs/toolkit";
 import { RootState } from ".";
-import { roads } from "../customTypings";
+import { road } from "../customTypings";
 import { csrfFetch } from "./csrf";
 
 const CURRENT_ROADS = 'roads/CURRENT_ROADS'
 
 const CLEAR_ROADS = 'roads/CLEAR_ROADS'
 
-const currentRoads = (roads: roads) => {
+const currentRoads = (roads: road[]) => {
     return {
         type: CURRENT_ROADS,
         payload: roads
@@ -22,7 +22,7 @@ const clearRoads = () => {
 
 export const getCurrentRoads = (worldId: string): ThunkAction<void, RootState, unknown, AnyAction> => async dispatch => {
     const response = await csrfFetch(`/api/roads/getRoads/${worldId}`)
-    const data = await response.json()
+    const data: road[] = await response.json()
     dispatch(currentRoads(data))
     return response
 }
@@ -32,24 +32,19 @@ export const clearCurrentRoads = (): ThunkAction<void, RootState, unknown, AnyAc
     return true
 }
 
-const roadReducer = (state: {
-    currentRoads: roads[] | null
-} = {
-    currentRoads: null
-},
-action: AnyAction) => {
-    let newState;
+const roadReducer = (state: object = {}, action: AnyAction) => {
+    let newState: any = {}
 
     switch( action.type ) {
         case CURRENT_ROADS:
             newState = { ...state }
-            newState.currentRoads = action.payload
+            action.payload.forEach((road: road) => {
+                newState[road.id] = road
+            })
             return newState
         case CLEAR_ROADS:
-            console.log('hello')
             newState = { ...state }
-            newState = {currentRoads: null}
-            console.log(newState)
+            newState = {}
         return newState
         default:
             return state
