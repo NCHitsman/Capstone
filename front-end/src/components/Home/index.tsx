@@ -9,6 +9,18 @@ import './Home.css'
 import { clearCurrentRoads } from '../../store/roads'
 import { clearCurrentSettlements } from '../../store/settlements'
 
+
+
+
+/*junctions, 2darray, path calculation, 2d array save as objects, type; world lithography,
+
+dont render worldcanvas until 2d done and pass in {2d array, settlements[], roads[], junctions[]},
+
+2d array to generate graph with nodes of towns, roads, junctions*/
+
+
+
+
 const Home = () => {
     const dispatch = useAppDispatch()
     const history = useHistory()

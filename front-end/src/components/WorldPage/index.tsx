@@ -30,9 +30,9 @@ const WorldPage = () => {
 
     const roads: roads[] | null = useSelector((state: RootState) => state.roads.currentRoads)
 
-    return (
+    return ( //TODO 2D array maker
         <>
-            <WorldCanvas world={world} settlements={settlements} roads={roads}/>
+            <WorldCanvas world={world} settlements={settlements} roads={roads} currentWorldId={+worldId}/>
         </>
     )
 }

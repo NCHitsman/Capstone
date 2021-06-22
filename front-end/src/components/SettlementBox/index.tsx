@@ -49,7 +49,8 @@ const SettlementBox = (props: MeshProps & {
             props.setSettlementWealth(props.settlement.wealth)
           }}
           onPointerOver={(event) => setHover(true)}
-          onPointerOut={(event) => setHover(false)}>
+          onPointerOut={(event) => setHover(false)}
+        >
           <boxGeometry args={[1, 1, 1]} />
           <meshStandardMaterial color={hovered ? 'hotpink' : props.color} />
         </mesh>

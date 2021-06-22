@@ -72,7 +72,7 @@ export const createNewSettlement = (name: string, world_id: number, world_size: 
 }
 
 export const clearCurrentSettlements = (): ThunkAction<void, RootState, unknown, AnyAction> => async dispatch => {
-    clearSettlements()
+    dispatch(clearSettlements())
     return true
 }
 

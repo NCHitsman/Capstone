@@ -28,8 +28,7 @@ export const getCurrentRoads = (worldId: string): ThunkAction<void, RootState, u
 }
 
 export const clearCurrentRoads = (): ThunkAction<void, RootState, unknown, AnyAction> => async dispatch => {
-    console.log('hello')
-    clearRoads()
+    dispatch(clearRoads())
     return true
 }
 
@@ -37,8 +36,8 @@ const roadReducer = (state: {
     currentRoads: roads[] | null
 } = {
     currentRoads: null
-    },
-    action: AnyAction) => {
+},
+action: AnyAction) => {
     let newState;
 
     switch( action.type ) {
@@ -47,8 +46,11 @@ const roadReducer = (state: {
             newState.currentRoads = action.payload
             return newState
         case CLEAR_ROADS:
+            console.log('hello')
+            newState = { ...state }
             newState = {currentRoads: null}
-            return newState
+            console.log(newState)
+        return newState
         default:
             return state
     }

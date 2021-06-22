@@ -8,7 +8,7 @@ import { useEffect } from 'react'
 import RoadLine from '../RoadLine'
 import * as THREE from 'three'
 
-const WorldCanvas = ({world, settlements, roads}: {world: worlds | null, settlements: settlements[] | null, roads: roads[] | null}) => {
+const WorldCanvas = ({world, settlements, roads, currentWorldId}: {world: worlds | null, settlements: settlements[] | null, roads: roads[] | null, currentWorldId: number}) => {
     const [hidden, setHidden] = useState(true)
     const [isLoaded, setIsLoaded] = useState(false)
     const [settlementName, setSettlementName] = useState('')
@@ -17,7 +17,7 @@ const WorldCanvas = ({world, settlements, roads}: {world: worlds | null, settlem
     const [settlementWealth, setSettlementWealth] = useState(0)
 
     useEffect(() => {
-        if (world && settlements) {
+        if ((world && settlements)) {
             setIsLoaded(true)
         }
     }, [world, settlements])
@@ -60,7 +60,7 @@ const WorldCanvas = ({world, settlements, roads}: {world: worlds | null, settlem
                             setSettlementName={setSettlementName}
                             setSettlementType={setSettlementType}
                             setSettlementPop={setSettlementPop}
-                            setSettlementWealth={setSettlementWealth}
+                            setSettlementWealth={setSettlementWealth} //TODO just send back settlement
                             settlement={settlement}
                             />
                         )
@@ -95,7 +95,7 @@ const WorldCanvas = ({world, settlements, roads}: {world: worlds | null, settlem
                     <button onClick={() => {
                         if (hidden === false) setHidden(true)
                     }}>Close</button>
-                 </div>
+                </div>
             </div>
             :
             <h1>Loading</h1>

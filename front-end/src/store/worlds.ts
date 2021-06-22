@@ -69,7 +69,7 @@ export const createNewWorld = (name: string, world_size: number, current_year: n
 }
 
 export const clearCurrentWorld = (): ThunkAction<void, RootState, unknown, AnyAction> => async dispatch => {
-    clearWorld()
+    dispatch(clearWorld())
     return true
 }
 
