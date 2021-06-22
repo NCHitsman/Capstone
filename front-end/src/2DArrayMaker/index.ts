@@ -10,8 +10,8 @@ const TwoDArrayMaker = (world: worlds | null, settlements: settlements, roads: r
         }
 
         for (let i in twoDArray) {
-            let x = +i - 25
-            for (let y = -(world.world_size/2); y < world.world_size / 2; y++) {
+            let y = +i - 25
+            for (let x = -(world.world_size/2); x < world.world_size / 2; x++) {
                 twoDArray[i].push({
                     idnt: '[OPEN]',
                     x: x,
@@ -40,7 +40,9 @@ const TwoDArrayMaker = (world: worlds | null, settlements: settlements, roads: r
             twoDArray[road.y_cordinate + add][road.x_cordinate + add] = roadObj
         });
 
-        console.table(twoDArray)
+        console.table(twoDArray) /* TODO path finding, on cross make junction, settlement and junction into graph
+                                    distace / short axis = step
+                                    obstable function */
     }
 }
 

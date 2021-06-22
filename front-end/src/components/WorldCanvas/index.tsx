@@ -30,10 +30,10 @@ const WorldCanvas = ({world, settlements, roads}: {world: worlds | null, settlem
             >
                 <Canvas
                 className='WorldCanvas'
-                camera={{ fov: 75, near: 0.1, far: 1000, position: [0, 50, 65]
+                camera={{ fov: 75, near: 0.1, far: 1000, position: [-65, 50, 0]
                 }}>
                     <axesHelper />
-                    <gridHelper args={[world?.world_size, world?.world_size]}/>
+                    <gridHelper args={[world?.world_size, world?.world_size]} position={[(world!.world_size / 2), 0, (world!.world_size / 2)]}/>
                     <OrbitControls />
                     <ambientLight />
                     <pointLight position={[10, 10, 10]} />
