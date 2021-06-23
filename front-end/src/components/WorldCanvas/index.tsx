@@ -5,8 +5,8 @@ import './WorldCanvas.css'
 import { roads, settlements, settlement, worlds } from '../../customTypings'
 import { useState } from 'react'
 import { useEffect } from 'react'
-// import RoadLine from '../RoadLine'
-// import * as THREE from 'three'
+import RoadLine from '../RoadLine'
+import * as THREE from 'three'
 
 const WorldCanvas = ({world, settlements, roads}: {world: worlds | null, settlements: settlements, roads: roads}) => {
     const [hidden, setHidden] = useState(true)
@@ -65,17 +65,17 @@ const WorldCanvas = ({world, settlements, roads}: {world: worlds | null, settlem
                             />
                         )
                     })}
-                    {/* {Object.values(roads)?.map((road: road) => {
-                        let x1 = road.x_cordinate
-                        let y1 = road.y_cordinate
+                    {Object.values(roads)?.map((road: any) => {
+                        // let x1 = road.x_cordinate
+                        // let y1 = road.y_cordinate
                         return (
                             <RoadLine
                             key={road.id}
-                            start={new THREE.Vector3(x1,0,y1)}
+                            start={new THREE.Vector3(Math.random() * 10,0,Math.random() * 10)}
                             end={new THREE.Vector3(1,0,1)}
                             />
                         )
-                    })} */}
+                    })}
                 </Canvas>
                 <div className={hidden? 'settlement__cards__parent none':'settlement__cards__parent'}>
                     <div hidden={hidden}>

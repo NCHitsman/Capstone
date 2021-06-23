@@ -1,6 +1,6 @@
 import { AnyAction, ThunkAction } from "@reduxjs/toolkit";
 import { RootState } from ".";
-import { road } from "../customTypings";
+import { road, roads } from "../customTypings";
 import { csrfFetch } from "./csrf";
 
 const CURRENT_ROADS = 'roads/CURRENT_ROADS'
@@ -32,20 +32,18 @@ export const clearCurrentRoads = (): ThunkAction<void, RootState, unknown, AnyAc
     return true
 }
 
-const roadReducer = (state: object = {}, action: AnyAction) => {
-    let newState: any = {}
+const roadReducer = (state: roads = {}, action: AnyAction) => {
+    let newState: roads = {}
 
     switch( action.type ) {
         case CURRENT_ROADS:
-            newState = { ...state }
+            newState = {}
             action.payload.forEach((road: road) => {
                 newState[road.id] = road
             })
             return newState
         case CLEAR_ROADS:
-            newState = { ...state }
-            newState = {}
-        return newState
+        return {}
         default:
             return state
     }

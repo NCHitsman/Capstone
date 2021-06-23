@@ -38,4 +38,4 @@ export interface road {
     start: settlements,
     end: settlements,
 }
-export interface roads { [key: number]: road}
+export interface roads { [key: number]: road }
