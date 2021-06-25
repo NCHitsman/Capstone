@@ -7,33 +7,47 @@ import { useState } from 'react'
 import { useEffect } from 'react'
 import RoadLine from '../RoadLine'
 import * as THREE from 'three'
+import WorldBaseSquare from './WorldBase'
+import { useMemo } from 'react'
+import { Vector3 } from 'three'
 
 const WorldCanvas = ({world, settlements, roads}: {world: worlds | null, settlements: settlements, roads: roads}) => {
     const [hidden, setHidden] = useState(true)
-    const [isLoaded, setIsLoaded] = useState(false)
     const [settlementName, setSettlementName] = useState('')
     const [settlementType, setSettlementType] = useState('')
-    const [settlementPop, setSettlementPop] = useState(0)
+    const [settlementPop, setSettlementPop] = useState(1)
     const [settlementWealth, setSettlementWealth] = useState(0)
+    const [action, setAction] = useState('')
 
-    useEffect(() => {
-        if ((world && settlements)) {
-            setIsLoaded(true)
+
+    const memo = useMemo(() => {
+        let memoArray: Vector3[] = []
+        Object.values(roads).forEach(road => {
+            memoArray.push(new THREE.Vector3(Math.random() * 10,0,Math.random() * 10)) //TODO FIX MEMO ISSUE AND RERENDERING WHEN SETTLEMENT INFO SHOWN
+        })
+        return memoArray
+    }, [roads])
+
+    const array: number[] = []
+    if (world) {
+        for (let i = 0; i <= world?.world_size; i++) {
+            array.push(i)
         }
-    }, [world, settlements])
+    }
 
     return (
         <>
-            {isLoaded ?
-            <div
-            // onClick={() => hidden == false ? setHidden(true) : x=0}
-            >
+            {world && settlements ?
+            <div>
+                <button
+                onClick={(e) => setAction('[STLM]')}
+                >make settlement</button>
                 <Canvas
                 className='WorldCanvas'
                 camera={{ fov: 75, near: 0.1, far: 1000, position: [-65, 50, 0]}}
                 >
                     <axesHelper />
-                    <gridHelper args={[world?.world_size, world?.world_size]} position={[0, 0, 0]}/>
+                    {/* <gridHelper args={[world?.world_size, world?.world_size]} position={[0, 0, 0]}/> */}
                     <OrbitControls />
                     <ambientLight />
                     <pointLight position={[10, 10, 10]} />
@@ -44,7 +58,11 @@ const WorldCanvas = ({world, settlements, roads}: {world: worlds | null, settlem
                             hidden={hidden}
                             setHidden={setHidden}
                             key={settlement.id}
-                            position={[settlement.x_cordinate, 0, settlement.y_cordinate]}
+                            position={[settlement.x_cordinate,
+                                settlement.type === 1 ? .5 :
+                                settlement.type === 2 ? 1 :
+                                settlement.type === 3 ? 1.5 : 2,
+                                settlement.y_cordinate]}
                             scale={
                                 settlement.type === 1 ? 1 :
                                 settlement.type === 2 ? 2 :
@@ -65,17 +83,28 @@ const WorldCanvas = ({world, settlements, roads}: {world: worlds | null, settlem
                             />
                         )
                     })}
-                    {Object.values(roads)?.map((road: any) => {
-                        // let x1 = road.x_cordinate
-                        // let y1 = road.y_cordinate
+                    {Object.values(roads)?.map((road: any, i) => {
                         return (
                             <RoadLine
                             key={road.id}
-                            start={new THREE.Vector3(Math.random() * 10,0,Math.random() * 10)}
+                            start={memo[i]}
                             end={new THREE.Vector3(1,0,1)}
                             />
                         )
                     })}
+
+
+                    {array.map((a, i) => {
+                        return (
+                            array.map((b, j) => {
+                                return (
+                                    <WorldBaseSquare key={b} action={action} setAction={setAction} i={i} j ={j} worldSize={world.world_size}/>
+                                )
+                            })
+                        )
+                    })}
+
+
                 </Canvas>
                 <div className={hidden? 'settlement__cards__parent none':'settlement__cards__parent'}>
                     <div hidden={hidden}>

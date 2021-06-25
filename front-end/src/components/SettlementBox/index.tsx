@@ -40,7 +40,7 @@ const SettlementBox = (props: MeshProps & {
         <mesh
           {...props}
           ref={mesh}
-          onClick={(event) => {
+          onClick={(e) => {
             if (props.hidden) props.setHidden(false)
             props.setSettlementName(props.settlement.name)
             const res = settlementTypeConvert(props.settlement.type)
@@ -48,8 +48,8 @@ const SettlementBox = (props: MeshProps & {
             props.setSettlementPop(props.settlement.population)
             props.setSettlementWealth(props.settlement.wealth)
           }}
-          onPointerOver={(event) => setHover(true)}
-          onPointerOut={(event) => setHover(false)}
+          onPointerOver={(e) => setHover(true)}
+          onPointerOut={(e) => setHover(false)}
         >
           <boxGeometry args={[1, 1, 1]} />
           <meshStandardMaterial color={hovered ? 'hotpink' : props.color} />
