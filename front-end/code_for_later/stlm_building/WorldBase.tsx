@@ -17,12 +17,12 @@ const WorldBaseSquare = ({action, setAction, i, j, worldSize}: {
 
     return (
         <>
-            <mesh
+            {/* <mesh
                 position={[i-vr, 0, j-vr]}
                 onPointerOver={(e) => setHover(true)}
                 onPointerOut={(e) => setHover(false)}
                 onClick={(e) => {
-                    if (action == '[STLM]') {
+                    if (action === '[STLM]') {
                         setHeight(5)
                         setColor('blue')
                         setAction('')
@@ -31,7 +31,7 @@ const WorldBaseSquare = ({action, setAction, i, j, worldSize}: {
             >
                 <boxGeometry args={[1, height, 1]} />
                 <meshStandardMaterial color={hovered ? 'hotpink' : color} />
-            </mesh>
+            </mesh> */}
         </>
     )
 

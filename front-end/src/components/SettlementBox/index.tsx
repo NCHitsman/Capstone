@@ -1,58 +1,39 @@
-import { MeshProps } from '@react-three/fiber'
 import { useRef , useState } from 'react'
 import * as THREE from 'three'
 import { settlement } from '../../customTypings'
 
-const SettlementBox = (props: MeshProps & {
-    className: string,
+const SettlementBox = ({hidden, setHidden, setSelectedId, settlement}: {
     hidden: boolean,
     setHidden: React.Dispatch<React.SetStateAction<boolean>>,
-    scale: number,
-    color: string,
-    setSettlementName: React.Dispatch<React.SetStateAction<string>>,
-    setSettlementType: React.Dispatch<React.SetStateAction<string>>,
-    setSettlementPop: React.Dispatch<React.SetStateAction<number>>,
-    setSettlementWealth: React.Dispatch<React.SetStateAction<number>>,
+    setSelectedId: React.Dispatch<React.SetStateAction<number>>
     settlement: settlement
     } ) => {
-    // This reference will give us direct access to the mesh
     const mesh = useRef<THREE.Mesh>(null!)
-    // Set up state for the hovered and active state
     const [hovered, setHover] = useState(false)
-    // Rotate mesh every frame, this is outside of React without overhead
 
-    const settlementTypeConvert = (type: number) => {
-      switch (type) {
-          case 1:
-              return 'Village'
-          case 2:
-              return 'Town'
-          case 3:
-              return 'City'
-          default:
-              return 'Capital'
-      }
-  }
+    let typeInfo: [number, number, string] =
+      settlement.type === 1 ? [.5, 1, 'lightblue'] :
+      settlement.type === 2 ? [1, 2, 'green'] :
+      settlement.type === 3 ? [1.5, 3, 'yellow'] : [2, 4, 'red']
+
+    console.log('render')
 
 
     return (
       <>
         <mesh
-          {...props}
           ref={mesh}
           onClick={(e) => {
-            if (props.hidden) props.setHidden(false)
-            props.setSettlementName(props.settlement.name)
-            const res = settlementTypeConvert(props.settlement.type)
-            props.setSettlementType(res)
-            props.setSettlementPop(props.settlement.population)
-            props.setSettlementWealth(props.settlement.wealth)
+            if  (hidden)  setHidden(false)
+            setSelectedId (settlement.id)
           }}
           onPointerOver={(e) => setHover(true)}
           onPointerOut={(e) => setHover(false)}
+          position={[settlement.x_cordinate, typeInfo[0], settlement.y_cordinate]}
+          scale={typeInfo[1]}
         >
           <boxGeometry args={[1, 1, 1]} />
-          <meshStandardMaterial color={hovered ? 'hotpink' : props.color} />
+          <meshStandardMaterial color={hovered ? 'hotpink' : typeInfo[2]} />
         </mesh>
       </>
     )
