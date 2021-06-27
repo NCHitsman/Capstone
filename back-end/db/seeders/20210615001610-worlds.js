@@ -4,17 +4,17 @@ module.exports = {
   up: async (queryInterface, Sequelize) => {
     await queryInterface.bulkInsert('Worlds', [
       {
-          name: 'Demo World',
-          owner_id: 1,
-          world_size: 50,
-          map_seed: null,
-          hour: 0,
-          day: 1,
-          year: 1000,
-          current_tick: 8760000,
-          created_tick: 8760000, // 1000 years in days
-          createdAt: new Date(),
-          updatedAt: new Date()
+        name: 'Demo World',
+        owner_id: 1,
+        world_size: 50,
+        map_seed: null,
+        hour: 0,
+        day: 1,
+        year: 1000,
+        current_tick: 8760000,
+        created_tick: 8760000, // 1000 years in days
+        createdAt: new Date(),
+        updatedAt: new Date()
       },
       {
         name: 'Demo World2',
@@ -28,7 +28,7 @@ module.exports = {
         created_tick: 5000000,
         createdAt: new Date(),
         updatedAt: new Date()
-    }
+      }
     ], {})
   },
 

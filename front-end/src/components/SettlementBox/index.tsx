@@ -25,8 +25,6 @@ const SettlementBox = ({
       ? [1.5, 3, "yellow"]
       : [2, 4, "red"];
 
-  console.log("render");
-
   return (
     <>
       <mesh
