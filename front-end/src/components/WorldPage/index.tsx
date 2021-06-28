@@ -15,15 +15,10 @@ const WorldPage = () => {
 
   useEffect(() => {
     dispatch(getCurrentWorld(worldId));
-  }, [dispatch, worldId]);
-
-  useEffect(() => {
     dispatch(getCurrentSettlements(worldId));
-  }, [dispatch, worldId]);
-
-  useEffect(() => {
     dispatch(getCurrentRoads(worldId));
   }, [dispatch, worldId]);
+
 
   const world: worlds | null = useSelector(
     (state: RootState) => state.worlds.currentWorld

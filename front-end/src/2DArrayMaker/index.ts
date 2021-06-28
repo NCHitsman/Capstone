@@ -27,7 +27,7 @@ const TwoDArrayMaker = (world: worlds | null, settlements: settlements, roads: r
                 y: settlement.y_cordinate,
                 id: settlement.id,
             }
-            twoDArray[settlement.y_cordinate + add][settlement.x_cordinate + add] = settlementObj
+            twoDArray[Math.floor(settlement.y_cordinate + add)][Math.floor(settlement.x_cordinate + add)] = settlementObj
         });
 
         Object.values(roads).forEach(road => {
