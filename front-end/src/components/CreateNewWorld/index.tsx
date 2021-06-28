@@ -1,12 +1,13 @@
 import { FormEvent, useState, useCallback } from "react";
 import { RootState, useAppDispatch } from "../../store";
-import { createNewWorld, SET_ACTION } from "../../store/worlds";
+import { createNewWorld } from "../../store/worlds";
 import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { createNewSettlement } from "../../store/settlements";
 import SettlementForm from "../SettlementForm";
 import CreateNewWorldCanvas from "./CreateNewWorldCanvas";
 import { createSettlementObject } from "../../customTypings";
+import { SET_ACTION } from "../../store/worldCreation";
 
 const CreateNewWorld = () => {
   const dispatch = useAppDispatch();
@@ -14,10 +15,6 @@ const CreateNewWorld = () => {
   const [worldName, setWorldName] = useState("");
   const [worldSize, setWorldSize] = useState("50");
   const [startingYear, setStartingYear] = useState("");
-  const [action, setAction] = useState<{ type: string; size: number }>({
-    type: "",
-    size: 1,
-  });
   const [settlementSize, setSettlementSize] = useState(1);
   const [settlementList, setSettlementLists] = useState<
     createSettlementObject[]
@@ -54,6 +51,12 @@ const CreateNewWorld = () => {
     }
     history.push(`/world/${worldId}`);
   };
+
+  const makeSettlementButton = () => {
+    setSettlementYears([...settlementYears, settlementYear]);
+    setSettlementNames([...settlementNames, settlementName]);
+    dispatch({ type: SET_ACTION, payload: { type: "[STLM]", settlementType: settlementSize } });
+  }
 
   return (
     <>
@@ -120,12 +123,7 @@ const CreateNewWorld = () => {
         </select>
 
         <button
-          onClick={() => {
-            setSettlementYears([...settlementYears, settlementYear]);
-            setSettlementNames([...settlementNames, settlementName]);
-            setAction({ type: "[STLM]", size: settlementSize });
-            dispatch({ type: SET_ACTION, payload: action });
-          }}
+          onClick={() => {makeSettlementButton()}}
         >
           Make Settlement
         </button>
@@ -133,8 +131,6 @@ const CreateNewWorld = () => {
       <CreateNewWorldCanvas
         setSettlementLists={setSettlementLists}
         settlementList={settlementList}
-        action={action}
-        setAction={setAction}
         worldSize={+worldSize}
         setSettlementName={setSettlementName}
         setSettlementYear={setSettlementYear}

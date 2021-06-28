@@ -6,7 +6,7 @@ import { worlds } from '../customTypings'
 const USER_WORLDS = 'worlds/USER_WORLDS'
 const CURRENT_WORLD = 'worlds/CURRENT_WORLD'
 const CLEAR_CURRENT_WORLD = 'worlds/CLEAR_CURRENT_WORLD'
-export const SET_ACTION = 'worlds/SET_ACTION'
+
 
 
 const userWorlds = (worlds: object[]) => {
@@ -98,9 +98,6 @@ const worldReducer = (state: {
             newState = {...state}
             newState.currentWorld = null
             return newState
-        // case SET_ACTION:
-
-        //     return newState
         default:
             return state
     }

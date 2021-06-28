@@ -7,12 +7,14 @@ import { ThunkDispatch } from "redux-thunk";
 import worldReducer from "./worlds";
 import settlementReducer from "./settlements";
 import roadReducer from "./roads";
+import worldCreationReducer from './worldCreation'
 
 const rootReducer = combineReducers({
   session: sessionReducer,
   worlds: worldReducer,
   settlements: settlementReducer,
-  roads: roadReducer
+  roads: roadReducer,
+  worldCreation: worldCreationReducer
 });
 
 export const store = configureStore({

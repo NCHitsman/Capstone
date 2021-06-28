@@ -6,23 +6,11 @@ import { createSettlementObject } from "../../customTypings";
 
 const CreateNewWorldCanvas = ({
   worldSize,
-  action,
-  setAction,
   setSettlementLists,
   settlementList,
   setSettlementName,
   setSettlementYear,
 }: {
-  action: {
-    type: string;
-    size: number;
-  };
-  setAction: React.Dispatch<
-    React.SetStateAction<{
-      type: string;
-      size: number;
-    }>
-  >;
   worldSize: number;
   setSettlementLists: React.Dispatch<
     React.SetStateAction<createSettlementObject[]>
@@ -56,8 +44,6 @@ const CreateNewWorldCanvas = ({
             return (
               <WorldBaseSquare
                 key={b}
-                action={action}
-                setAction={setAction}
                 i={i}
                 j={j}
                 worldSize={worldSize}
