@@ -1,6 +1,6 @@
-import { FormEvent, useState } from "react";
+import { FormEvent, useState, useCallback } from "react";
 import { RootState, useAppDispatch } from "../../store";
-import { createNewWorld } from "../../store/worlds";
+import { createNewWorld, SET_ACTION } from "../../store/worlds";
 import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { createNewSettlement } from "../../store/settlements";
@@ -19,11 +19,13 @@ const CreateNewWorld = () => {
     size: 1,
   });
   const [settlementSize, setSettlementSize] = useState(1);
-  const [settlementList, setSettlementLists] = useState<createSettlementObject[]>(
-    []
-  );
+  const [settlementList, setSettlementLists] = useState<
+    createSettlementObject[]
+  >([]);
   const [settlementName, setSettlementName] = useState("");
+  const [settlementNames, setSettlementNames] = useState<string[]>([]);
   const [settlementYear, setSettlementYear] = useState("");
+  const [settlementYears, setSettlementYears] = useState<string[]>([]);
 
   const currentUserId = useSelector(
     (state: RootState) => state.session.user?.id
@@ -35,9 +37,19 @@ const CreateNewWorld = () => {
       createNewWorld(worldName, +worldSize, +startingYear, currentUserId)
     );
     if (worldId) {
-      settlementList.forEach(async (settlementData) => {
-        const {name, type, x_cordinate, y_cordinate, created_year} = settlementData
-        await dispatch(createNewSettlement(name, worldId, +worldSize, type, created_year, x_cordinate, y_cordinate))
+      settlementList.forEach(async (settlementData, i) => {
+        const { type, x_cordinate, y_cordinate } = settlementData;
+        await dispatch(
+          createNewSettlement(
+            settlementNames[i],
+            worldId,
+            +worldSize,
+            type,
+            +settlementYears[i],
+            x_cordinate,
+            y_cordinate
+          )
+        );
       });
     }
     history.push(`/world/${worldId}`);
@@ -108,7 +120,12 @@ const CreateNewWorld = () => {
         </select>
 
         <button
-          onClick={() => setAction({ type: "[STLM]", size: settlementSize })}
+          onClick={() => {
+            setSettlementYears([...settlementYears, settlementYear]);
+            setSettlementNames([...settlementNames, settlementName]);
+            setAction({ type: "[STLM]", size: settlementSize });
+            dispatch({ type: SET_ACTION, payload: action });
+          }}
         >
           Make Settlement
         </button>
@@ -119,9 +136,7 @@ const CreateNewWorld = () => {
         action={action}
         setAction={setAction}
         worldSize={+worldSize}
-        settlementName={settlementName}
         setSettlementName={setSettlementName}
-        settlementYear={settlementYear}
         setSettlementYear={setSettlementYear}
       />
     </>

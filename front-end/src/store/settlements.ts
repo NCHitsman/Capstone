@@ -5,8 +5,8 @@ import { csrfFetch } from "./csrf";
 
 // const CREATE_SETTLEMENTS = 'settlements/CREATE_SETTLEMENTS'
 const CURRENT_SETTLEMENTS = 'settlements/CURRENT_SETTLEMENTS'
+const CLEAR_SETTLEMENTS = 'settlements/CLEAR_SETTLEMENTS'
 
-const CLEAR_SETTLEMENTS = 'Settlements/CLEAR_SETTLEMENTS'
 
 const currentSettlement = (settlements: settlement[]) => {
     return {

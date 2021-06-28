@@ -10,8 +10,6 @@ const CreateNewWorldCanvas = ({
   setAction,
   setSettlementLists,
   settlementList,
-  settlementName,
-  settlementYear,
   setSettlementName,
   setSettlementYear,
 }: {
@@ -30,9 +28,7 @@ const CreateNewWorldCanvas = ({
     React.SetStateAction<createSettlementObject[]>
   >;
   settlementList: createSettlementObject[]
-  settlementName: string;
   setSettlementName: React.Dispatch<React.SetStateAction<string>>;
-  settlementYear: string;
   setSettlementYear: React.Dispatch<React.SetStateAction<string>>;
 }) => {
 
@@ -66,9 +62,7 @@ const CreateNewWorldCanvas = ({
                 j={j}
                 worldSize={worldSize}
                 setSettlementLists={setSettlementLists}
-                settlementName={settlementName}
                 setSettlementName={setSettlementName}
-                settlementYear={settlementYear}
                 setSettlementYear={setSettlementYear}
                 settlementList={settlementList}
               />

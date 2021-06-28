@@ -28,11 +28,11 @@ export interface settlement {
 export interface settlements { [key: number]: settlement}
 
 export interface createSettlementObject {
-    name: string
+    name?: string
     type: number
     x_cordinate: number
     y_cordinate: number
-    created_year: number
+    created_year?: number
 }
 
 export interface road {

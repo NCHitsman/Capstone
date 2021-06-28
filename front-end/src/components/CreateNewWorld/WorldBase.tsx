@@ -1,7 +1,7 @@
-import { useState } from "react";
+import { useState, memo } from "react";
 import { createSettlementObject } from "../../customTypings";
 
-const WorldBaseSquare = ({
+const WorldBaseSquare = memo(({
   action,
   setAction,
   i,
@@ -9,8 +9,6 @@ const WorldBaseSquare = ({
   worldSize,
   setSettlementLists,
   settlementList,
-  settlementName,
-  settlementYear,
   setSettlementName,
   setSettlementYear,
 }: {
@@ -31,9 +29,7 @@ const WorldBaseSquare = ({
     React.SetStateAction<createSettlementObject[]>
   >;
   settlementList: createSettlementObject[]
-  settlementName: string;
   setSettlementName: React.Dispatch<React.SetStateAction<string>>;
-  settlementYear: string;
   setSettlementYear: React.Dispatch<React.SetStateAction<string>>;
 }) => {
   const [hovered, setHover] = useState(false);
@@ -52,11 +48,9 @@ const WorldBaseSquare = ({
         setZ(0.1);
         setScale(action.size);
         const settlementData: createSettlementObject = {
-          name: settlementName,
           type: action.size,
           x_cordinate: x,
           y_cordinate: y,
-          created_year: +settlementYear,
         }
         setSettlementLists([...settlementList, settlementData])
         setSettlementName('')
@@ -74,6 +68,8 @@ const WorldBaseSquare = ({
         return
     }
   };
+
+  console.log('renders')
 
   return (
     <>
@@ -93,6 +89,6 @@ const WorldBaseSquare = ({
       </mesh>
     </>
   );
-};
+});
 
 export default WorldBaseSquare;
