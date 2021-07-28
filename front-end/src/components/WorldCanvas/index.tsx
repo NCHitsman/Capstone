@@ -29,7 +29,7 @@ const WorldCanvas = ({
           setSelectedId={setSelectedId}
         />
       )),
-    [settlements]
+    [settlements, hidden]
   );
 
   return (
